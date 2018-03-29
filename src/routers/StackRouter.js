@@ -444,6 +444,10 @@ export default (routeConfigs, stackConfig = {}) => {
                 NavigationActions.init({ params: newStackAction.params });
 
               childState = router.getStateForAction(childAction);
+
+              if (childState.routes.some(r => r.key.includes('Drawer'))) {
+                childState = router.getStateForAction(newStackAction);
+              }
             }
 
             return {
